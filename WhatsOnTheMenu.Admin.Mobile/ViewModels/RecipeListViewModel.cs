@@ -1,49 +1,57 @@
 ﻿
+using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using WhatsOnTheMenu.Admin.Mobile.Models;
 using WhatsOnTheMenu.Admin.Mobile.Pages;
+using WhatsOnTheMenu.Admin.Mobile.Services;
 
 namespace WhatsOnTheMenu.Admin.Mobile.ViewModels;
 
 public partial class RecipeListViewModel : ObservableObject
 {
-    public List<Recipe> RecipeList { get; set; }
     [ObservableProperty]
-    private RecipeViewModel _selectedRecipe;
+    private ObservableCollection<RecipeListItemViewModel> _recipeList = new();
+    //public List<RecipeListItemViewModel> RecipeList { get; set; }
+    [ObservableProperty]
+    private RecipeViewModel? _selectedRecipe;
 
-    public RecipeListViewModel()
+    private readonly IRecipeService _recipeService;
+
+    public RecipeListViewModel(IRecipeService recipeService)
     {
-        InitData();
+        _recipeService = recipeService;
+        GetAllRecipes();
     }
 
-    private void InitData() 
+    private async void GetAllRecipes() 
     {
-        RecipeList = new List<Recipe>
+        List<Recipe> recipes = await _recipeService.GetAllRecipesAsync();
+        List<RecipeListItemViewModel> listItems = new();
+        foreach (var @recipe in recipes)
         {
-            new Recipe
-            { 
-                Id = new Guid(),
-                Name = "Cheese On Toast",
-                ImageUrl = "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-05-Cheese-on-Toast%2FIMG_6699",
-                RecipeSource = "Internet",
-                Ingredients = new List<String>{"Cheese", "Bread"}
-            },
-            new Recipe
-            {
-                Id = new Guid(),
-                Name = "Spaghetti",
-                ImageUrl = "https://midwestfoodieblog.com/wp-content/uploads/2023/08/homemade-pasta-sauce-1.jpg",
-                RecipeSource = "Internet",
-                Ingredients = new List<String>{"Cheese", "Tomatoes", "Spaghetti" }
-            }
-        };
+            listItems.Add(MapRecipeToRecipeRecipeListViewModel(@recipe));
+        }
+        RecipeList.Clear();
+        RecipeList = listItems.ToObservableCollection();
     }
 
     [RelayCommand]
     public async Task NavigateToSelectedItem()
     {
         await Shell.Current.GoToAsync(nameof(RecipePage));
+    }
+
+    private RecipeListItemViewModel MapRecipeToRecipeRecipeListViewModel(Recipe @recipe)
+    {
+        return new RecipeListItemViewModel(
+            @recipe.Id,
+            @recipe.Name,
+            @recipe.ImageUrl,
+            @recipe.RecipeSource,
+            @recipe.Ingredients
+            );
     }
 
 }

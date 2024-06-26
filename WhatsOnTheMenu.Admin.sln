@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsOnTheMenu.Admin.Mobile", "WhatsOnTheMenu.Admin.Mobile\WhatsOnTheMenu.Admin.Mobile.csproj", "{03C84741-F255-401F-B3A3-C6ABA89FC6CC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhatsOnTheMenu.Admin.API", "WhatsOnTheMenu.Admin.API\WhatsOnTheMenu.Admin.API.csproj", "{A6B2365B-7E5A-4CB7-ACB7-48F7B3932A6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{03C84741-F255-401F-B3A3-C6ABA89FC6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03C84741-F255-401F-B3A3-C6ABA89FC6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03C84741-F255-401F-B3A3-C6ABA89FC6CC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A6B2365B-7E5A-4CB7-ACB7-48F7B3932A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B2365B-7E5A-4CB7-ACB7-48F7B3932A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B2365B-7E5A-4CB7-ACB7-48F7B3932A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B2365B-7E5A-4CB7-ACB7-48F7B3932A6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

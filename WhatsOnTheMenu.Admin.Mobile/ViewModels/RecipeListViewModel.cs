@@ -15,7 +15,7 @@ public partial class RecipeListViewModel : ObservableObject
     private ObservableCollection<RecipeListItemViewModel> _recipeList = new();
     //public List<RecipeListItemViewModel> RecipeList { get; set; }
     [ObservableProperty]
-    private RecipeViewModel? _selectedRecipe;
+    private RecipeListItemViewModel? _selectedRecipe;
 
     private readonly IRecipeService _recipeService;
 
@@ -40,7 +40,12 @@ public partial class RecipeListViewModel : ObservableObject
     [RelayCommand]
     public async Task NavigateToSelectedItem()
     {
-        await Shell.Current.GoToAsync(nameof(RecipePage));
+        if (SelectedRecipe is not null)
+        {
+            var parameters = new Dictionary<string, object> { { "RecipeId", SelectedRecipe.Id } };
+            await Shell.Current.GoToAsync(nameof(RecipePage), parameters);
+        }
+
     }
 
     private RecipeListItemViewModel MapRecipeToRecipeRecipeListViewModel(Recipe @recipe)

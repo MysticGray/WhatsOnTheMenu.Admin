@@ -37,7 +37,7 @@ public class RecipeRepository : IRecipeRepository
         try
         {
             Recipe? @recipe = await client.GetFromJsonAsync<Recipe>(
-                $"recipe/{id}",
+                $"recipes/{id}",
                 new JsonSerializerOptions(JsonSerializerDefaults.Web));
             return recipe;
         }

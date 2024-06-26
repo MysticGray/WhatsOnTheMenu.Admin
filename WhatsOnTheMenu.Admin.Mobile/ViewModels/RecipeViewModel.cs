@@ -1,27 +1,61 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Xml.Linq;
 using WhatsOnTheMenu.Admin.Mobile.Models;
+using WhatsOnTheMenu.Admin.Mobile.Services;
 
 namespace WhatsOnTheMenu.Admin.Mobile.ViewModels;
 
-public class RecipeViewModel : ObservableObject
+
+public partial class RecipeViewModel : ObservableObject, IQueryAttributable
 {
+    private readonly IRecipeService _recipeService;
+    [ObservableProperty]
+    private Guid _id;
+    [ObservableProperty]
+    private string _name;
+    [ObservableProperty]
+    private string _imageUrl;
+    [ObservableProperty]
+    private string _recipeSource;
+    [ObservableProperty]
+    private List<string> _ingredients;
+    [ObservableProperty]
+    private Guid _selectedId;
 
-    public Recipe Recipe { get; set; }
-
-    public RecipeViewModel()
+    // Add a load async. This is sometimes not ready when needed. 
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        InitData();
-    }
-    private void InitData()
-    {
-        Recipe = new Recipe
+        var recipeId = query["RecipeId"].ToString();
+        if (Guid.TryParse(recipeId, out var selectedId))
         {
-            Id = new Guid(),
-            Name = "Cheese On Toast",
-            ImageUrl = "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-05-Cheese-on-Toast%2FIMG_6699",
-            RecipeSource = "Internet",
-            Ingredients = new List<String> { "Cheese", "Bread" }
-        };
+            SelectedId = selectedId;
+        }
     }
+
+
+
+    public RecipeViewModel(IRecipeService recipeService)
+    {
+        _recipeService = recipeService;
+        //SelectedId = Guid.Parse("ed33f30b-0520-420e-8fc1-58820d6adf89");
+        GetRecipe(SelectedId);
+    }
+    private async void GetRecipe(Guid Id)
+    {
+        var @recipe = await _recipeService.GetRecipeAsync(Id);
+        MapRecipeData(@recipe);
+       
+    }
+
+    private void MapRecipeData(Recipe @recipe)
+    {
+        Id = @recipe.Id;
+        Name = @recipe.Name;
+        ImageUrl = @recipe.ImageUrl;
+        RecipeSource = @recipe.RecipeSource;
+        Ingredients = @recipe.Ingredients;
+    }
+
+
 }

@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhatsOnTheMenu.Admin.Mobile.Pages.RecipePage"
-             Title="{Binding Recipe.Name}">
+             Title="{Binding Name}">
     <Grid>
         <ScrollView>
             <VerticalStackLayout>
-                <Image Aspect="AspectFill" Source="{Binding Recipe.ImageUrl}"/>
-                <Label Text="{Binding Recipe.RecipeSource}" Padding="10,5" FontSize="10" TextColor="LightSalmon" FontAttributes="Italic"/>
+                <Image Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+                <Label Text="{Binding RecipeSource}" Padding="10,5" FontSize="10" TextColor="LightSalmon" FontAttributes="Italic"/>
                 <Label Text="Ingredients" Padding="10" FontSize="20"/>
-                <StackLayout BindableLayout.ItemsSource="{Binding Recipe.Ingredients}" Padding="10">
+                <StackLayout BindableLayout.ItemsSource="{Binding Ingredients}" Padding="10">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Label Text="{Binding}"/>

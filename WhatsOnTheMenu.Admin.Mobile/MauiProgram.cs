@@ -48,7 +48,7 @@ namespace WhatsOnTheMenu.Admin.Mobile
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<RecipeListPage>();
-            builder.Services.AddTransient<RecipePage>();
+            builder.Services.AddSingleton<RecipePage>();
             builder.Services.AddTransient<PantryPage>();
             builder.Services.AddTransient<ShoppingListPage>();
             return builder;

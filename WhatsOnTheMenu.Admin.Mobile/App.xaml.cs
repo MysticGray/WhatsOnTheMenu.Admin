@@ -6,9 +6,8 @@
         {
             InitializeComponent();
 
-            //MainPage = new AppShell();
-            if (DeviceInfo.Idiom == DeviceIdiom.Phone)
-                Shell.Current.CurrentItem = PhoneTabs;
+            MainPage = new AppShell();
+
         }
     }
 }

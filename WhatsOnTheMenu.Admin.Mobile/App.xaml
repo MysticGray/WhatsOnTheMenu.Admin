@@ -16,30 +16,6 @@
         <Shell
             FlyoutWidth="68"
             FlyoutBehavior="{OnIdiom Phone=Disabled, Default=Locked}">
-
-            <Shell.FlyoutFooterTemplate>
-                <DataTemplate>
-                    <Grid RowDefinitions="68">
-
-                    </Grid>
-                </DataTemplate>
-
-            </Shell.FlyoutFooterTemplate>
-            <!-- Phone -->
-            <TabBar x:Name="PhoneTabs">
-                <Tab Title="Home" Icon="tab_home.png">
-                    <ShellContent ContentTemplate="{DataTemplate page:HomePage}"/>
-                </Tab>
-                <Tab Title="Recipes" Icon="tab_bookopen.png">
-                    <ShellContent ContentTemplate="{DataTemplate page:RecipeListPage}"/>
-                </Tab>
-                <Tab Title="Pantry" Icon="tab_cupboard.png">
-                    <ShellContent ContentTemplate="{DataTemplate page:RecipeListPage}"/>
-                </Tab>
-                <Tab Title="Shopping List" Icon="tab_list.png">
-                    <ShellContent ContentTemplate="{DataTemplate page:RecipeListPage}"/>
-                </Tab>
-            </TabBar>
         </Shell>
     </Application.MainPage>
 </Application>

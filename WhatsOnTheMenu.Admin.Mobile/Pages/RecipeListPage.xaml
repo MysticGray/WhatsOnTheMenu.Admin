@@ -7,12 +7,15 @@
         <ScrollView>
             <CollectionView
             ItemsSource="{Binding RecipeList}"
+            SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding NavigateToSelectedItemCommand}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid
                         Padding="10"
                         ColumnDefinitions="Auto, Auto">
+
                             <Image
                             Aspect="AspectFill"
                             Source="{Binding ImageUrl, TargetNullValue=fallback.jpg}"

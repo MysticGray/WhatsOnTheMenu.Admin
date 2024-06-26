@@ -8,6 +8,28 @@
     Shell.FlyoutBehavior="Disabled"
     Title="WhatsOnTheMenu.Admin.Mobile">
 
+    <!--<ShellContent ContentTemplate="{DataTemplate page:RecipeListPage}" />-->
+    <!--<Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid RowDefinitions="68">
+
+            </Grid>
+        </DataTemplate>
+
+    </Shell.FlyoutFooterTemplate> -->
+    <!-- Phone -->
+    <ShellItem x:Name="PhoneTabs">
+        <Tab  Title="Recipes" Icon="tab_bookopen.png">
+            <ShellContent ContentTemplate="{DataTemplate page:RecipeListPage}"/>
+        </Tab>
+        <Tab  Title="Pantry" Icon="tab_cupboard.png">
+            <ShellContent ContentTemplate="{DataTemplate page:PantryPage}"/>
+        </Tab>
+        <Tab  Title="Shopping List" Icon="tab_list.png">
+            <ShellContent ContentTemplate="{DataTemplate page:ShoppingListPage}"/>
+        </Tab>
+    </ShellItem> 
+
 </Shell>
 
         

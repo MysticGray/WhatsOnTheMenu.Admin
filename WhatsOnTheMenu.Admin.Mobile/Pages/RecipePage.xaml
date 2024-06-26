@@ -2,11 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhatsOnTheMenu.Admin.Mobile.Pages.RecipePage"
-             Title="RecipePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="{Binding Recipe.Name}">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <Image Aspect="AspectFill" Source="{Binding Recipe.ImageUrl}"/>
+                <Label Text="{Binding Recipe.RecipeSource}" Padding="10,5" FontSize="10" TextColor="LightSalmon" FontAttributes="Italic"/>
+                <Label Text="Ingredients" Padding="10" FontSize="20"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding Recipe.Ingredients}" Padding="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

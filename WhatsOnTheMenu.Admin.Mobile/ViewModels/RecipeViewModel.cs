@@ -31,15 +31,13 @@ public partial class RecipeViewModel : ObservableObject, IQueryAttributable
         {
             SelectedId = selectedId;
         }
+        GetRecipe(SelectedId);
     }
-
-
 
     public RecipeViewModel(IRecipeService recipeService)
     {
         _recipeService = recipeService;
         //SelectedId = Guid.Parse("ed33f30b-0520-420e-8fc1-58820d6adf89");
-        GetRecipe(SelectedId);
     }
     private async void GetRecipe(Guid Id)
     {

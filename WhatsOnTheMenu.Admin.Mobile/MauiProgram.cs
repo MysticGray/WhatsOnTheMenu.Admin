@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 using WhatsOnTheMenu.Admin.Mobile.Models;
 using WhatsOnTheMenu.Admin.Mobile.Pages;
 using WhatsOnTheMenu.Admin.Mobile.Repository;
@@ -13,6 +15,9 @@ namespace WhatsOnTheMenu.Admin.Mobile
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            
+
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
@@ -78,8 +83,13 @@ namespace WhatsOnTheMenu.Admin.Mobile
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<IRecipeService, RecipeService>();
+            builder.Services.AddSerilog(
+                new LoggerConfiguration()
+                .WriteTo
+                .Debug()
+                .CreateLogger());
             return builder;
         }
-
+   
     }
 }

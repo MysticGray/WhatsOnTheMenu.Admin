@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>WhatsOnTheMenu.Admin.Mobile</ApplicationTitle>
+		<ApplicationTitle>WOTM</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.whatsonthemenu.admin.mobile</ApplicationId>
@@ -40,10 +40,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
+		<MauiIcon Include="Resources\AppIcon\appiconn.svg" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#01851D" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#01851D" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -56,6 +58,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\AppIcon\appiconn.svg" />
 	  <None Remove="Resources\Images\tab_home.svg" />
 	</ItemGroup>
 
